@@ -4,7 +4,6 @@ import { Container, Form } from "react-bootstrap"
 import SpotifyWebApi from "spotify-web-api-node"
 import TrackSearchResult from "./TrackSearchResult"
 import Player from './Player'
-//import axios from "axios"
 
 const spotifyApi = new SpotifyWebApi({
     clientId: "960f87b99f6f4a3eb3d37403ed0e6321",
@@ -24,25 +23,6 @@ function Dashboard({ code }) {
         setSearch("")
         setLyrics("")
       }
-
-
-      //get lyrics api else comment this code
-    // useEffect(() => {
-    //     if (!playingTrack) return
-
-    //     axios
-    //         .get("http://localhost:3001/lyrics", {
-    //             params: {
-    //                 track: playingTrack.title,
-    //                 artist: playingTrack.artist,
-    //             },
-    //         })
-    //         .then(res => {
-    //             setLyrics(res.data.lyrics)
-    //         })
-    // }, [playingTrack])
-
-   // console.log("searchResults", searchResults);
 
     useEffect(() => {
         if (!accessToken) return;
@@ -67,12 +47,13 @@ function Dashboard({ code }) {
                         },
                         track.album.images[0]
                     )
-
+                    
                     return {
                         artist: track.artists[0].name,
                         title: track.name,
                         uri: track.uri,
                         albumUrl: smallestAlbumImage.url,
+                        preview_url: track.preview_url
                     }
                 })
             )
@@ -99,7 +80,8 @@ function Dashboard({ code }) {
           </div>
         )}
             </div>
-            <div><Player accessToken={accessToken} trackUri={playingTrack?.uri}/></div>
+            <div><Player native={true} accessToken={accessToken} trackUri={playingTrack?.uri} url={playingTrack}/></div>
+           
         </Container>
 
     )
