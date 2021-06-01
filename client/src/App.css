@@ -7,11 +7,6 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
   background-color: #282c34;
@@ -39,20 +34,13 @@
 
 audio {
   width: 100%;
-  /* height: 45px; */
   }
   
-  /* audio::-webkit-media-controls-mute-button {
-  display: none !important;
+  .containerRoot {
+    height: 100vh;
+    width: 100%;
+    background-image: url(image.png);
+    background-size: cover;
+    background-position: center;
+    position: relative;
   }
-  
-  audio::-webkit-media-controls-volume-slider {
-  display: none !important;
-  }
-  
-  audio::-webkit-media-controls-volume-control-container.closed {
-  display: none !important;
-  }
-  audio::-webkit-media-controls-volume-control-container{
-  display: none !important;
-  } */

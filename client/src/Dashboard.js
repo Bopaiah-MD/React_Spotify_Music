@@ -4,6 +4,7 @@ import { Container, Form } from "react-bootstrap"
 import SpotifyWebApi from "spotify-web-api-node"
 import TrackSearchResult from "./TrackSearchResult"
 import Player from './Player'
+import './App.css';
 
 const spotifyApi = new SpotifyWebApi({
     clientId: "960f87b99f6f4a3eb3d37403ed0e6321",
@@ -21,7 +22,7 @@ let testData = [{
 
 
 function Dashboard({ code }) {
-       
+
     const accessToken = useAuth(code)
     const [search, setSearch] = useState("")
     const [searchResults, setSearchResults] = useState([])
@@ -73,6 +74,7 @@ function Dashboard({ code }) {
     }, [search, accessToken])
     
     return (
+        <div className="containerRoot">
         <Container className="d-flex flex-column py-2" style={{ height: "100vh" }}>
             <Form.Control
                 type="search"
@@ -86,13 +88,14 @@ function Dashboard({ code }) {
                 ))}
                 {searchResults.length === 0 && (
           <div className="text-center" style={{ whiteSpace: "pre" }}>
-            <img src={playingTrack?.posterUrl || "https://wallpapercave.com/wp/wp2201811.jpg"} alt="https://cxp.asia/2020/wp-content/uploads/2021/04/450_1000.jpg" width="500" height="600"/>
+            <img src={playingTrack?.posterUrl } alt={null} width="500" height="600"/>
           </div>
         )}
             </div>
             <div><Player native={true} accessToken={accessToken} trackUri={playingTrack?.uri} url={playingTrack}/></div>
            
         </Container>
+        </div>
 
     )
 }
